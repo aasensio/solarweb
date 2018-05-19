@@ -1,0 +1,198 @@
+<!doctype html>
+<html>
+  <head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" type="text/css" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo_iac.ico') }}">
+    <title>Enhance</title>
+    <script type="text/javascript" src="static/socket.io.min.js"></script>
+    <script type="text/javascript" src="static/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet" /> 
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.js"></script>
+    <script>
+      var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+    </script>
+
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+		$('#navl').prepend('<a id="menu-icon" style="color:transparent;">.</a>');
+		$("#menu-icon").on("click", function(){
+			$("#nav").slideToggle();
+			$(this).toggleClass("active");
+		});                
+        });
+        
+  
+</script>
+
+  
+  </head>
+  <body class="background">
+
+      <div id="scroll-top"></div>
+      <div id="header-w">
+          <div id="header" class="row-fluid">
+                      <a href="/severoochoa"><div class="logo">.</div></a>
+           
+                  <div class="sitedescription"></div>
+                       
+                  
+                                         
+          </div>       
+      </div>
+      
+      {% include "menu.html" %}
+
+    <script>
+
+      $(document).ready(function(){
+          //var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+
+          socket.emit('ready');
+
+          socket.on('update_buttons', function(msg) {
+            var script = JSON.parse(msg.script);
+            var div = JSON.parse(msg.div);
+            $('#script1').empty();
+            $('#script1').append(script);
+            
+            $('#div1').empty();
+            $('#div1').append(div);
+          }
+          );
+
+          socket.on('update_figure', function(msg) {
+            var script = JSON.parse(msg.script);
+            var div = JSON.parse(msg.div);
+            $('#script2').empty();
+            $('#script2').append(script);
+            
+            $('#div2').empty();
+            $('#div2').append(div);
+          }
+          );
+
+          socket.on('update_deconvolved', function(msg) {
+            var script = JSON.parse(msg.script);
+            var div = JSON.parse(msg.div);
+            $('#script3').empty();
+            $('#script3').append(script);
+            
+            $('#div3').empty();
+            $('#div3').append(div);
+          }
+          );
+
+          socket.on('label', function(msg) {
+            var data = JSON.parse(msg.data);
+            $('#messages').empty();
+            $('#messages').append(data);
+          }
+          );
+
+          socket.on('label2', function(msg) {
+            var data = JSON.parse(msg.data);
+            $('#messages2').empty();
+            $('#messages2').append(data);
+          }
+          );
+
+          socket.on('download_fits_file', function(msg) {
+            console.log("hey");
+            $('#download').submit();
+          }
+          );
+        
+      });
+    </script>
+
+  <div id="main"> 
+    <div id="wrapper-w">
+      <div id="wrapper">
+        <div id="comp-w">        
+          <div class="row-fluid">                            
+            <div id="comp" class="span9">
+              <div id="comp-i">
+                <div id="user1" class="row-fluid">
+                  <div class="module  ">
+                    <div class="module-body">
+                      
+                    </div>
+                  </div>
+                </div>
+              </div>
+                          
+              <div class="clr"></div> 
+              <div id="system-message-container"></div>
+                    
+              <div class="item-page">
+
+                  <h1>Deconvolution and superresolution of HMI data</h1>
+        
+                  <p style="text-align: justify;">
+                  The Helioseismic and Magnetic Imager (HMI) provides continuum images and magnetograms with
+                  a cadence better than one every minute. It has been continuously observing the Sun 24 hours
+                  a day for the past 7 years. The obvious trade-off between cadence and spatial resolution
+                  makes that HMI is not enough to analyze the smallest-scale events in the solar atmosphere.
+                  </p>
+                  
+                  <p style="text-align: justify;">
+                  Our aim is developing a new method to enhance HMI data, simultaneously deconvolving and
+                  superresolving images and magnetograms. The resulting images will mimick observations with a
+                  diffraction-limited telescope twice the diameter of HMI. The method, that we term Enhance, is based
+                  on two deep fully convolutional neural networks that input patches of HMI observations and output
+                  deconvolved and superresolved data. The neural networks are trained on synthetic data obtained from
+                  simulations of the emergence of solar active regions.
+                  </p>
+          
+                  <p style="text-align: justify;">
+                  We have obtained deconvolved and supperresolved HMI images. To solve this ill-defined problem with
+                  infinite solutions we have used a neural network approach to add prior information from the
+                  simulations. We test Enhance against Hinode data that has been degraded to a 28 cm diameter
+                  telescope showing very good consistency. The code is open sourced for the community and
+                  described <a href="https://arxiv.org/abs/1706.02933">here</a>.
+                  </p>
+          
+                  <h4>Online tool</h4>
+                  <p style="text-align: justify;">Select the date and the time and the desired dataset. The code will 
+                  download the image and display a low-res version of the data to minimize data transfer. You can then select with the zoom and
+                  pan tools the region to be deconvolved. Once you are happy with the selection, click on the button
+                  to deconvolve. Finally, you can download the data as a FITS file with the download button.</p>
+          
+            
+                  <div id="script1"></div>
+                  <div id="div1"></div>
+                  <div id="script2"></div>
+                  <div id="div2" style="width: 580px; height: 400px;"></div>
+                  <div id="script3"></div>
+                  <div id="div3"></div>
+                  <p><div id="messages"></div></p>
+                  <p><div id="messages2"></div></p>
+                  <form id="download" action="/download_fits" method="POST"></form>
+          
+                
+              </div>
+
+
+              <div class="clr"></div>
+                                                                                          
+            </div>
+          </div>                     
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% include "footer.html" %}
+      
+  </body>
+</html>

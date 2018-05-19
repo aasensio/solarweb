@@ -1,0 +1,123 @@
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+
+body { 
+  font-family: 'Open Sans', sans-serif;
+  color: #666;
+}
+
+/* STRUCTURE */
+
+#pagewrap {
+    padding: 5px;
+    width: 1920px;
+    margin: 20px auto;
+}
+header {
+    height: 100px;
+    padding: 0 15px;
+}
+#vena {
+    width: 180px;
+    float: left;
+    padding: 5px 15px;
+}
+
+#duna {
+    width: 480px; /* Account for margins + border values */
+    float: left;
+    padding: 5px 15px;
+    margin: 0px 5px 5px 5px;
+}
+
+#delta {
+    width: 480px;
+    padding: 5px 15px;
+    float: left;
+}
+footer {
+    clear: both;
+    padding: 0 15px;
+}
+
+/************************************************************************************
+MEDIA QUERIES
+*************************************************************************************/
+/* for 980px or less */
+@media screen and (max-width: 980px) {
+    
+    #pagewrap {
+        width: 94%;
+    }
+    #vena {
+        width: 41%;
+        padding: 1% 4%;
+    }
+    #duna {
+        width: 41%;
+        padding: 1% 4%;
+        margin: 0px 0px 5px 5px;
+        float: right;
+    }
+    
+    #delta {
+        clear: both;
+        padding: 1% 4%;
+        width: auto;
+        float: none;
+    }
+
+    header, footer {
+        padding: 1% 4%;
+    }
+}
+
+ for 700px or less 
+@media screen and (max-width: 600px) {
+
+    #vena {
+        width: auto;
+        float: none;
+    }
+    
+    #duna {
+        width: auto;
+        float: none;
+        margin-left: 0px;
+    }
+    
+    #delta {
+        width: auto;
+        float: none;
+    }
+
+}
+
+/* for 480px or less */
+@media screen and (max-width: 480px) {
+
+    header {
+        height: auto;
+    }
+    h1 {
+        font-size: 2em;
+    }
+    #delta {
+        display: none;
+    }
+
+}
+
+
+#vena {
+    background: #f8f8f8;
+}
+#delta {
+    background: #f0efef;
+}
+header, #vena, #duna, #delta {
+    margin-bottom: 5px;
+}
+
+#pagewrap, header, #vena, #duna, #delta, footer {
+    border: solid 1px #ccc;
+}

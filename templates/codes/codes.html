@@ -1,0 +1,116 @@
+<!doctype html>
+<html>
+  <head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" type="text/css" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo_iac.ico') }}">
+    <title>Enhance</title>
+    <script type="text/javascript" src="static/socket.io.min.js"></script>
+    <script type="text/javascript" src="static/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet" /> 
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.js"></script>
+    <script>
+      var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+    </script>
+  </head>
+  <body class="background">
+
+      <div id="scroll-top"></div>
+      <div id="header-w">
+          <div id="header" class="row-fluid">
+                      <a href="/severoochoa"><div class="logo">.</div></a>
+           
+                  <div class="sitedescription"></div>
+                       
+                  
+                                         
+          </div>       
+      </div>
+
+      {% include "menu.html" %}
+
+      <div id="main"> 
+          <div id="wrapper-w">
+            <div id="wrapper">
+              <div id="comp-w">        
+                <div class="row-fluid">                            
+                  <div id="comp" class="span9">
+                    <div id="comp-i">
+                      <div id="user1" class="row-fluid">
+                        <div class="module  ">
+                          <div class="module-body">
+                            <div class="random-image">
+                              <!-- <img src="static/solar_physics.jpg" alt="solar_physics.jpg" width="700" height="200" /> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                                
+                    <div class="clr"></div> 
+                    <div id="system-message-container"></div>
+                          
+                    <div class="item-page">
+                        <h1 class="item-page-title"><a href="/severoochoa/index.php/research/solar-physics">Computer codes</a></h1>
+                              
+                        <p> </p>
+                        <p style="text-align: justify;">
+                        This webpage is a central repository where you can find all 
+                        synthesis and inversion codes developed at the IAC or in which we have
+                        collaborated. With inversion code we refer to any code that tries to
+                        extract physical information from the observations using a model.
+                        Given the power of such inversion codes, we have applied them to
+                        several problems in astrophysics.
+                        </p>
+
+                        <p style="text-align: justify;">
+                        In the field of spectropolarimetry, since their conception in the 70s-80s, they have become
+                        standard tools used to infer the thermodynamic and magnetic properties of solar and stellar plasmas
+                        from the observed Stokes profiles. Nowadays, they come in different flavors. Given the complexity
+                        and variability of the physics of line formation, inversion codes are typically specialized to
+                        infer information from a specific set of spectral lines.
+                        </p>
+
+                        <p>
+                        <h4>Online tools</h4>
+                        <ul>
+                        <li style="text-align: justify;"><a href='enhance'>Enhance</a></li>
+                        <li style="text-align: justify;"><a href='enhance'>Hazel</a></li>
+                        </ul>
+                        </p>
+
+                        <p>
+                        <h4>Codes to download (links to GitHub repositories)</h4>
+                        <ul>
+                          <li style="text-align: justify;"><a href="https://github.com/hsocasnavarro/NICOLE"</a>Nicole</li>
+                          <li style="text-align: justify;"><a href="https://github.com/aasensio/hazel"</a>Hazel</li>
+                          <li style="text-align: justify;"><a href="https://github.com/aasensio/hazel2"</a>Hazel 2.0</li>
+                          <li style="text-align: justify;"><a href="https://github.com/BasilioRuiz/SIR-code">SIR</a></li>                        
+                        </ul>
+                      </p>
+                            
+                    </div>
+  
+  
+                    <div class="clr"></div>
+                                                                                                
+                  </div>
+                </div>                     
+              </div>
+            </div>
+          </div>
+        </div>
+            
+        {% include "footer.html" %}
+  
+  </body>
+</html>

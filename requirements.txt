@@ -1,0 +1,9 @@
+name: flask
+dependencies:
+ - numpy
+ - astropy
+ - flask
+ - pandas
+ - pip:
+   - drms 
+   - flask-socketio

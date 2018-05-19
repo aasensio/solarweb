@@ -1,0 +1,107 @@
+
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
+body {
+    font-family: "Open Sans", Helvetica, Arial, "sans-serif" !important;
+    background-color:  #ddd !important;
+}
+
+p, li {
+    line-height: 1.6em; 
+}
+
+.popover li {
+    line-height: 1.4em; 
+}
+
+/**** Main Container ***/
+
+#wrap {
+    margin: 30px auto;
+    padding: 0;
+}
+
+#content {
+    background-color: #fff;
+    padding: 10px 20px;
+    min-height: 400px;
+}
+
+#navbar {
+    margin: 0;
+    padding-top: 5px;
+    height: 86px;
+}
+    
+.navbar-nav {
+    margin-top: 20px;
+}
+
+h1, h2, h3 {
+    color: #2C6787;
+    font-family: "Open Sans", Helvetica, Arial, "sans-serif" !important;
+}
+
+figure img {
+    margin-top: 20px;
+}
+
+figure figcaption {
+    margin-bottom: 50px;
+    font-style: italic;
+}
+
+/* Linkology */
+a, a:link, a:active {
+    color: #2C6787;
+}
+
+a:hover {
+    color: #3562A5;
+}
+
+.logo {
+    padding: 5px 10px 0 3px;
+}
+
+footer {
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+dl {
+    margin: 20px ;
+}
+
+dd {
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#page_title {
+    margin-top:15px;
+    float: left;
+}
+
+.title {
+    margin: 5px 0 0px 0;
+}
+
+.title a {
+    font-size: 3rem;
+    font-variant: small-caps;
+    color: #7BCCF7;
+}
+
+.title a:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.subtitle {
+    font-size: 1.7rem;
+    min-width: 500px;
+    color: #bbb;
+}
+

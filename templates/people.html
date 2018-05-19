@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" type="text/css" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo_iac.ico') }}">
+    <title>Enhance</title>
+    <script type="text/javascript" src="static/socket.io.min.js"></script>
+    <script type="text/javascript" src="static/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet" /> 
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.js"></script>
+    <script>
+      var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+    </script>
+  </head>
+  <body class="background">
+
+      <div id="scroll-top"></div>
+      <div id="header-w">
+          <div id="header" class="row-fluid">
+                      <a href="/severoochoa"><div class="logo">.</div></a>
+           
+                  <div class="sitedescription"></div>
+                       
+                  
+                                         
+          </div>       
+      </div>
+
+      {% include "menu.html" %}
+      
+      <div id="main"> 
+        <div id="wrapper-w">
+          <div id="wrapper">
+            <div id="comp-w">        
+              <div class="row-fluid">                            
+                <div id="comp" class="span9">
+                  <div id="comp-i">
+                    <div id="user1" class="row-fluid">
+                      <div class="module  ">
+                        <div class="module-body">
+                          <div class="random-image">
+                            <!-- <img src="static/solar_physics.jpg" alt="solar_physics.jpg" width="700" height="200" /> -->
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                              
+                  <div class="clr"></div> 
+                  <div id="system-message-container"></div>
+                        
+                  <div class="item-page">
+                    <h1>People</a></h1>
+
+                    <h4>PhD</h4>
+                    <p style="text-align: justify;">                      
+                      <ul>                    
+                        <li>Ana Belén Griñon Marín (abgm)</li>                                                                        
+                        <li>Beatrice Popescu Braileanu (bpopescu)</li>
+                        <li>Carlos Díaz Baso (cdiazbas)</li>                                                                        
+                        <li>Daniel Elías Nóbrega Siverio (<dnobres@gmail.com></li>                        
+                        <li>Jaume Jaume Bestard (jjaumeb)</li>                        
+                        <li>Juan Carlos Trelles (jtrelles)</li>                                                
+                        <li>María Montes (mmsolis)</li>
+                        <li>Melania Cubas (mcubas(</li>                        
+                        <li>Paula Sola (psola)></li>
+                        <li>Pedro A. Gonzalez Morales <pedro.a.gonzalez.m@googlemail.com></li>                                                
+                        <li>Valeriia Liakh (vliakh)</li>
+                      </ul>
+                    </p>
+
+                    <h4>Postdocs</h4>
+                    <p style="text-align: justify;">                      
+                      <ul>
+                          <li>Andrii Sukhorukov (andrii)</li>
+                          <li>Angel de Vicente (angelv)</li>
+                          <li>Carlos Dominguez (carlosd)</li>
+                          <li>Manuel Luna (mluna)</li>
+                          <li>María Jesús Martínez (marian)</li>
+                          <li>Reza Rezaei (rrezaei)</li>
+                          <li>Savita Mathur (smathur)</li>
+                          <li>Supriya Hebbur Dayananda (supriya)</li>
+                          <li>Tanausu del Pino Aleman (tanausu)</li>                          
+                          <li>Tobias Felipe (tobias_ext)</li>
+                          <li>Nikola Vitas (nvitas)</li>
+                      </ul>
+                    </p>
+
+                    <h4>Staff</h4>
+                    <p style="text-align: justify;">                      
+                      <ul>
+                          <li>Andrés Asensio Ramos (aasensio)</li>
+                          <li>Basilio Ruiz Cobo (brc)</li>
+                          <li>Elena Khomenko (khomenko)</li>
+                          <li>Fernando Moreno-Insertis (fmi)</li>
+                          <li>Hector Socas-Navarro (hsocas)</li>
+                          <li>Manuel Collados (mcv)</li>
+                          <li>Pere L. Palle (pere.l.palle)</li>
+                          <li>Javier Trujillo Bueno (jtb)</li>
+                          <li>Iñigo Arregui (iarregui)</li>
+                      </ul>
+                    </p>              
+                          
+                  </div>
+
+
+                  <div class="clr"></div>
+                                                                                              
+                </div>
+              </div>                     
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {% include "footer.html" %}
+          
+                              
+  
+  </body>
+</html>

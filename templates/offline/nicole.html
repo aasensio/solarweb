@@ -1,0 +1,131 @@
+<!doctype html>
+<html>
+  <head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" type="text/css" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo_iac.ico') }}">
+    <title>Enhance</title>
+    <script type="text/javascript" src="static/socket.io.min.js"></script>
+    <script type="text/javascript" src="static/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet" /> 
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.js"></script>
+    <script>
+      var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+    </script>
+  </head>
+  <body class="background">
+
+      <div id="scroll-top"></div>
+      <div id="header-w">
+          <div id="header" class="row-fluid">
+                      <a href="/severoochoa"><div class="logo">.</div></a>
+           
+                  <div class="sitedescription"></div>
+                       
+                  
+                                         
+          </div>       
+      </div>
+
+      {% include "menu.html" %}
+
+      <div id="main"> 
+          <div id="wrapper-w">
+            <div id="wrapper">
+              <div id="comp-w">        
+                <div class="row-fluid">                            
+                  <div id="comp" class="span9">
+                    <div id="comp-i">
+                      <div id="user1" class="row-fluid">
+                        <div class="module  ">
+                          <div class="module-body">
+                            <div class="random-image">
+                              <!-- <img src="static/solar_physics.jpg" alt="solar_physics.jpg" width="700" height="200" /> -->
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                                
+                    <div class="clr"></div> 
+                    <div id="system-message-container"></div>
+                          
+                    <div class="item-page">
+                        <h1>NICOLE</h1>
+
+                        
+                        <a href="https://github.com/hsocasnavarro/NICOLE">NICOLE</a> is a general-purpose synthesis and inversion code for the Stokes
+                        profiles emergent from solar/stellar atmospheres. Solar instrumentation is
+                        becoming more sophisticated every day and the data sets which are currently available 
+                        (as well as those expected for the near future) demand the
+                        use of modern diagnostic tools in order to retrieve as much information
+                        as possible from the observations. It seeks for the model atmosphere that provides the
+                        best fit to the profiles (in a least-squares sense) of an arbitrary number of
+                        simultaneously-observed spectral lines. The underlying hypotheses are:
+                        </p>
+                        
+                        <p style="text-align: justify;">
+                        <ul>
+                          <li>
+                          
+                        Atomic level populations in statistical equilibrium (NLTE), assuming
+                        complete angle and frequency redistribution.
+                      </li>
+                      <li>
+                        No sub-pixel atmospheric structure is considered, except for a filling
+                        factor and a prescribed external atmosphere.
+                      </li>
+                      <li>
+                        The observed Stokes profiles are induced by the Zeeman effect in
+                        transitions where L-S coupling is a valid approximation (with the
+                        exception of the infrared FeI line at 1565.28nm, which has an ad-hoc
+                        treatment).
+                      </li>
+                      <li>
+                        The hydrostatic equilibrium equation is used to calculate the gas density 
+                        and the height scale in the atmosphere. This is optional in synthesis 
+                        mode (in that case, the gas pressure/density would be read
+                        from the input model) and mandatory in inversion mode
+                      </li>
+                      <li>
+                        Undocumented feature for hyperfine structure calculations (please,
+                        check with the author for information)
+                        The inversion core used for the development of NICOLE is the LORIEN
+                        engine (the Lovely Reusable Inversion ENgine, also publicly available for
+                        download from the C.I.C. web page), which combines the SVD technique
+                        with the Levenberg-Marquardt minimization method to solve the inverse
+                        problem (see Press et al. 1990).                        
+                      </ul>
+                    </p>
+
+                              
+                                              
+                        
+                        
+                        
+                            
+                    </div>
+  
+  
+                    <div class="clr"></div>
+                                                                                                
+                  </div>
+                </div>                     
+              </div>
+            </div>
+          </div>
+        </div>
+            
+        {% include "footer.html" %}
+  
+  </body>
+</html>

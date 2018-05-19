@@ -1,0 +1,213 @@
+<!doctype html>
+<html>
+  <head>  
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <link rel="stylesheet" type="text/css" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles.css') }}" />
+    <link rel="shortcut icon" href="{{ url_for('static', filename='logo_iac.ico') }}">
+    <title>Enhance</title>
+    <script type="text/javascript" src="static/socket.io.min.js"></script>
+    <script type="text/javascript" src="static/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.css" type="text/css" />
+    <link rel="stylesheet" href="http://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Droid+Sans" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet" /> 
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-api-0.12.15.min.js"></script>
+    <script type="text/javascript" src="https://cdn.pydata.org/bokeh/release/bokeh-widgets-0.12.15.min.js"></script>
+    <script>
+      var socket = io.connect('http://' + document.domain + ':' + location.port + '/hazel');
+      var stI = new Array(100);
+      var stQ = new Array(100);
+      var stU = new Array(100);
+      var stV = new Array(100);
+      var done = 0;
+
+    </script>
+  
+  </head>
+  <body class="background">
+
+      <div id="scroll-top"></div>
+      <div id="header-w">
+          <div id="header" class="row-fluid">
+                      <a href="/severoochoa"><div class="logo">.</div></a>
+           
+                  <div class="sitedescription"></div>
+                       
+                  
+                                         
+          </div>       
+      </div>
+      
+      {% include "menu.html" %}
+
+    <script>
+
+      // This function waits until the synthesis has been done
+      // by polling the 'done' variable every 100 ms
+      function replot_after_computed(source) {
+        done = 0;
+        messages.innerHTML = 'Computing...';
+        var waiter = setInterval(function(){
+          if (done == 1) {
+            clearInterval(waiter);
+            change_plot(source);
+          }
+        }, 100);
+        messages.innerHTML = '';
+      }
+
+      function change_plot(source) {
+        var data = source.data;
+        console.log("Done");
+        
+        for (var i=0; i < data['stI'].length; i++) {
+          data['stI'][i] = stI[i];
+          data['stQ'][i] = stQ[i];
+          data['stU'][i] = stU[i];
+          data['stV'][i] = stV[i];          
+        }
+        source.change.emit();        
+      }
+
+      $(document).ready(function(){
+          //var socket = io.connect('http://' + document.domain + ':' + location.port + '/test');
+
+          socket.emit('ready');
+
+          socket.on('update_buttons', function(msg) {
+            var script = JSON.parse(msg.script);
+            var div = JSON.parse(msg.div);
+
+            $('#script1').empty();
+            $('#script1').append(script)
+            
+            $('#div1').empty();
+            $('#div1').append(div);
+          }
+          );
+
+          socket.on('update_figure', function(msg) {
+            var script = JSON.parse(msg.script);
+            var div = JSON.parse(msg.div);
+            $('#script2').empty();
+            $('#script2').append(script)
+            
+            $('#div2').empty();
+            $('#div2').append(div);
+          }
+          );
+
+          socket.on('update_deconvolved', function(msg) {
+            var script = JSON.parse(msg.script);
+            var div = JSON.parse(msg.div);
+            $('#script3').empty();
+            $('#script3').append(script)
+            
+            $('#div3').empty();
+            $('#div3').append(div);
+          }
+          );
+
+          socket.on('label', function(msg) {
+            var data = JSON.parse(msg.data);
+            $('#messages').empty();
+            $('#messages').append(data);
+          }
+          );
+
+          socket.on('label2', function(msg) {
+            var data = JSON.parse(msg.data);
+            $('#messages2').empty();
+            $('#messages2').append(data);
+          }
+          );
+
+          socket.on('download_fits_file', function(msg) {
+            console.log("hey");
+            $('#download').submit();
+          }
+          );
+
+          socket.on('update_stokes', function(msg) {
+            var stokesI = JSON.parse(msg.stI);
+            var stokesQ = JSON.parse(msg.stQ);
+            var stokesU = JSON.parse(msg.stU);
+            var stokesV = JSON.parse(msg.stV);            
+            for (var i=0; i < stokesI.length; i++) {
+              stI[i] = stokesI[i];
+              stQ[i] = stokesQ[i];
+              stU[i] = stokesU[i];
+              stV[i] = stokesV[i];
+            }
+            done = 1;
+          }
+          );
+          
+      });
+    </script>
+  
+  <div id="main"> 
+      <div id="wrapper-w">
+        <div id="wrapper">
+          <div id="comp-w">        
+            <div class="row-fluid">                            
+              <div id="comp" class="span9">
+                <div id="comp-i">
+                  <div id="user1" class="row-fluid">
+                    <div class="module  ">
+                      <div class="module-body">
+                        
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                            
+                <div class="clr"></div> 
+                <div id="system-message-container"></div>
+                      
+                <div class="item-page">
+  
+                    <h1>Hazel</h1>
+          
+                    <p style="text-align: justify;">
+                    This is a very simple online tool to synthesize the Stokes profiles
+                    emerging from the 10830 A multiplet. If you need more flexibility,
+                    please download the code <a href="/codes">here</a>
+
+                    </p>
+                    <h4>Online tool</h4>
+                    <p><div id="messages"></div></p>
+                                        
+                    <div id="script1"></div>
+                    <div id="div1"></div>
+                    
+                    <!-- <div id="script2"></div>
+                    <div id="div2" style="width: 580px; height: 400px;"></div>
+                    <div id="script3"></div>
+                    <div id="div3"></div>
+                    <p><div id="messages"></div></p>
+                    <p><div id="messages2"></div></p>
+                    <form id="download" action="/download_fits" method="POST"></form>
+             -->
+                  
+                </div>
+  
+  
+                <div class="clr"></div>
+                                                                                            
+              </div>
+            </div>                     
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {% include "footer.html" %}
+
+  </body>
+</html>
